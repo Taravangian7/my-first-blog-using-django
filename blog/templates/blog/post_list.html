@@ -7,11 +7,13 @@
             <h1><a href="/">Polabras del tuyo</a></h1>
         </div>
 
-        <div>
-            <p>published: 03/03/2023, 12:03</p>
-            <h2><a href="">Primera polabra</a></h2>
-            <p>Grabiel Omar Batistucha.</p>
-        </div>
+    {% for post in posts %}
+    <div>
+        <p> publicado: {{ post.published_date }}</p>
+        <h2><a href="">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
 
         <div>
             <p>published: 03/03/2023, 12:03</p>
