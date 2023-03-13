@@ -6,7 +6,7 @@ from .forms import PostForm
 
 def post_list(request):
     posts=Post.objects.order_by('-published_date')
-    return render(request, 'blog/post_list.html', {'posts':posts})
+    return render(request, 'blog/post_list.html', {'posts':posts}) #El nombre de posts luego se usa en el HTML, justamente hace referencia a esta vista.
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -38,3 +38,8 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+def post_delete(request,pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete_post()
+    return redirect('post_list')
