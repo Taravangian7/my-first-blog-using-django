@@ -1,6 +1,8 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-                    {% for post in posts %} 
+                    {% for post in posts %}
+                    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a> 
                     <div class="post">
                         <div class="date">
                             publicado: {{ post.published_date }}

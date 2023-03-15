@@ -55,8 +55,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
         'APP_DIRS': True,
+        'DIRS': ['blog/templates',], #Agregar el blog/ fue CLAVE para que usara las plantillas de registration.
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -125,3 +125,19 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = '/' #Una vez hecho el login te redirige a la página principal
+
+
+PASSWORD_HASHERS = [    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+                        'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+                        'django.contrib.auth.hashers.Argon2PasswordHasher',
+                        'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+                        'django.contrib.auth.hashers.BCryptPasswordHasher',
+                        'django.contrib.auth.hashers.SHA1PasswordHasher',
+                        'django.contrib.auth.hashers.MD5PasswordHasher',
+                        'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
+                        'django.contrib.auth.hashers.UnsaltedSHA1PasswordHasher',]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Establecer la plantilla para la vista PasswordResetView
+PASSWORD_RESET_TEMPLATE_NAME = 'registration\password_reset_form.html'
